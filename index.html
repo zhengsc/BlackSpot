@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>自动吸附效果</title>
+	<meta name="viewport" content="width=device-width, maximum-scale=1, minimum-scale=1, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="BlackSpot.css">
+	<link rel="stylesheet" href="../Toast/Toast.css">
+	<style>
+		body { padding-top: 20px; }
+		.introduce { padding: 10px 20px; }
+		ul { list-style: none; overflow: hidden; display: flex; justify-content: center; flex-wrap: wrap; margin-top: 40px; }
+		li { float: left; }
+		li:not(:last-child) { margin-right: 10px; }
+		button { width: 80px; height: 30px; text-align: center }
+	</style>
+</head>
+<body>
+	<div class="introduce">
+		功能说明：<span class="introduce-context"></span>
+	</div>
+	<ul>
+		<li>
+			<button data-index="bs1" data-text="默认设置">默认设置</button>
+		</li>
+		<li>
+			<button data-index="bs2" data-text="距上下距离小于150px时，优先吸附到上下边">优先吸附</button>
+		</li>
+		<li>
+			<button data-index="bs3" data-text="固定吸附到上边">固定边界</button>
+		</li>
+		<li>
+			<button data-index="bs4" data-text="固定吸附到{bottom: 150px, right: 50px}的位置">固定位置</button>
+		</li>
+		<li>
+			<button data-index="bs5" data-text="停止拖动后不自定吸附到边界">关闭吸附</button>
+		</li>
+	</ul>
+
+	<div class="BlackSpot bs1">
+		<span>拖动我</span>
+	</div>
+	<div class="BlackSpot bs2">
+		
+		<span>拖动我</span>
+	</div>
+	<div class="BlackSpot bs3">
+		
+		<span>拖动我</span>
+	</div>
+	<div class="BlackSpot bs4">
+		
+		<span>拖动我</span>
+	</div>
+	<div class="BlackSpot bs5">
+		
+		<span>拖动我</span>
+	</div>
+
+	<script src="BlackSpot.js"></script>
+	<script src="../Toast/Toast.js"></script>
+	<script>
+		var el = function(selector) {
+			return document.querySelectorAll(selector)
+		}
+
+		el('button').forEach(function(e) {
+			e.addEventListener('click', function() {
+				var index = this.dataset.index
+				
+				el('.BlackSpot').forEach(function(instance) {
+					instance.style.display = 'none'
+				})
+
+				el('.' + index)[0].style.display = 'block'
+
+				el('.introduce-context')[0].innerHTML = this.dataset.text
+			})
+		})
+
+		var options = {
+			bs1: {
+				beforeMove: function() {
+					Toast('开始移动')
+				},
+				afterMove: function() {
+					Toast('移动结束')
+				},
+			},
+			bs2: {
+				adsorbDistance: 150
+			},
+			bs3: {
+				boundary: 'top'
+			},
+			bs4: {
+				boundary: {
+					right: 0,
+					bottom: 150
+				}
+			},
+			bs5: {
+				isAuto: false
+			}
+		}
+
+		for(var m in options) {
+			if(options.hasOwnProperty(m)) {
+				BlackSpot(('.' + m), options[m])
+			}
+		}
+
+		el('button')[0].click()
+	</script>
+</body>
+</html>
