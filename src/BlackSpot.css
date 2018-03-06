@@ -1,0 +1,42 @@
+
+.BlackSpot {
+	position: fixed;
+	right: 0;
+	top: 200px;
+	width: 50px;
+	height: 50px;
+	color: #fff;
+	border-radius: 100%;
+	line-height: 50px;
+	font-size: 14px;
+	text-align: center;
+}
+
+.bs1 {
+	background: #00BCD4;
+	top: 100px;
+	right: 20px;
+}
+
+.bs2 {
+	background: #03A9F4;
+	bottom: 30px;
+	left: 12px;
+}
+
+.bs3 {
+	background: #CDDC39;
+	left: 0;
+	bottom: 0;
+}
+
+.bs4 {
+	background: #FF9800;
+	left: 50px;
+}
+
+.bs5 {
+	background: #ff5722;
+	bottom: 0;
+	left: 40px;
+}
