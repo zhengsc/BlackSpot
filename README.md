@@ -1,5 +1,5 @@
 # BlackSpot
-Auto adsorb to the edge of a window
+Auto adsorb to the edge of window
 
 [DEMO](http://www.zhengsc.com/blackSpot)
 
